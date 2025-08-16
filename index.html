@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculiz - Entraînement Calcul Mental</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🧠 Calculiz</h1>
+            <p>Entraînez-vous aux calculs mentaux</p>
+        </header>
+
+        <!-- Menu principal -->
+        <div id="menu" class="menu-screen">
+            <h2>Choisissez votre entraînement</h2>
+            <div class="menu-options">
+                <button class="menu-btn" onclick="startQuiz('carres25')">
+                    <span class="icon">²</span>
+                    <h3>Carrés jusqu'à 25</h3>
+                    <p>Nombres au carré de 1 à 25</p>
+                </button>
+                
+                <button class="menu-btn" onclick="startQuiz('multiplications20')">
+                    <span class="icon">×</span>
+                    <h3>Multiplications jusqu'à 20</h3>
+                    <p>Tables de multiplication</p>
+                </button>
+                
+                <button class="menu-btn" onclick="startQuiz('cubes10')">
+                    <span class="icon">³</span>
+                    <h3>Cubes jusqu'à 10</h3>
+                    <p>Nombres au cube de 1 à 10</p>
+                </button>
+                
+                <button class="menu-btn" onclick="startQuiz('alphabet')">
+                    <span class="icon">🔤</span>
+                    <h3>Rang des lettres</h3>
+                    <p>Position des lettres dans l'alphabet</p>
+                </button>
+                
+                <button class="menu-btn" onclick="showStats()">
+                    <span class="icon">📊</span>
+                    <h3>Mes Statistiques</h3>
+                    <p>Suivez vos performances</p>
+                </button>
+            </div>
+        </div>
+
+        <!-- Écran de quiz -->
+        <div id="quiz" class="quiz-screen hidden">
+            <div class="quiz-header">
+                <button class="back-btn" onclick="backToMenu()">← Retour</button>
+                <div class="quiz-info">
+                    <div class="timer-container">
+                        <span class="timer-label">⏱️</span>
+                        <span id="timer">00:00</span>
+                    </div>
+                    <div class="score-info">
+                        <span id="score">Score: 0</span>
+                        <span id="question-counter">Question 1/10</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quiz-content">
+                <h2 id="quiz-title"></h2>
+                <div class="question-container">
+                    <div id="question" class="question"></div>
+                    <input type="text" id="answer" class="answer-input" placeholder="Votre réponse..." autofocus>
+                    <button id="submit-btn" onclick="checkAnswer()">Valider</button>
+                </div>
+                
+                <div id="feedback" class="feedback hidden"></div>
+                
+                <div class="progress-bar">
+                    <div id="progress" class="progress"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de résultats -->
+        <div id="results" class="results-screen hidden">
+            <h2>🎉 Quiz terminé !</h2>
+            <div class="final-score">
+                <div class="score-circle">
+                    <span id="final-score">0</span>
+                    <span>/10</span>
+                </div>
+                <div class="time-result">
+                    <p>⏱️ Temps total: <span id="final-time">00:00</span></p>
+                    <p>📈 Temps moyen: <span id="average-time">0s</span> par question</p>
+                </div>
+            </div>
+            <div id="performance-message" class="performance-message"></div>
+            <div class="results-actions">
+                <button class="btn-primary" onclick="restartQuiz()">Recommencer</button>
+                <button class="btn-secondary" onclick="backToMenu()">Menu principal</button>
+            </div>
+        </div>
+
+        <!-- Écran des statistiques -->
+        <div id="stats" class="stats-screen hidden">
+            <div class="stats-header">
+                <button class="back-btn" onclick="backToMenu()">← Retour</button>
+                <h2>📊 Mes Statistiques</h2>
+                <button class="clear-stats-btn" onclick="clearStats()">🗑️ Effacer</button>
+            </div>
+            
+            <div class="stats-content">
+                <div class="stats-summary">
+                    <div class="stat-card">
+                        <h3>🎯 Quiz réalisés</h3>
+                        <span id="total-quizzes">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>⭐ Score moyen</h3>
+                        <span id="average-score">0%</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>⏱️ Temps moyen</h3>
+                        <span id="average-total-time">00:00</span>
+                    </div>
+                    <div class="stat-card">
+                        <h3>🏆 Meilleur score</h3>
+                        <span id="best-score">0/10</span>
+                    </div>
+                </div>
+
+                <div class="stats-details">
+                    <h3>📈 Détails par exercice</h3>
+                    <div id="quiz-stats" class="quiz-stats">
+                        <!-- Les statistiques seront générées dynamiquement -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
